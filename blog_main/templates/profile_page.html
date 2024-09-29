@@ -1,0 +1,192 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f7f7f7;
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: #000;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            position: sticky; /* Sticky positioning */
+            top: 0; /* Stick to the top of the viewport */
+            z-index: 1000; /* Ensure it stays on top of other elements */
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+            margin-right: 10px;
+        }
+
+        .nav-items {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-items .icon {
+            margin-right: 20px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .nav-items .icon:hover {
+            color: #ccc;
+        }
+
+        .signout-btn {
+            background-color: #ff4d4d;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .signout-btn:hover {
+            background-color: #ff6666;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            max-width: 90%;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .post {
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .post-author {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            text-align: left;
+        }
+
+        .post-date {
+            font-size: 14px;
+            color: #888;
+            text-align: right;
+        }
+
+        .post-title {
+            font-size: 24px;
+            font-weight: 600;
+            text-align: center;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .post-content {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #555;
+            text-align: left;
+        }
+
+        /* Like and Dislike Section */
+        .like-dislike {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            color: #555;
+        }
+
+        .like-dislike .icon {
+            font-size: 20px;
+            cursor: pointer;
+            margin-right: 15px;
+        }
+
+        .like-dislike .icon:hover {
+            color: #000;
+        }
+
+        .like-dislike .like-count,
+        .like-dislike .dislike-count {
+            font-size: 16px;
+            margin-right: 25px;
+        }
+
+        /* Styling for the body background */
+        body {
+            background-color: #f0f2f5;
+        }
+        a{
+            color: white;
+        }
+
+    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="logo">
+            <a href="homepage"><img src="{% static 'images/logo_white.png' %}" alt="Logo"></a>
+        </div>
+        <div class="nav-items">
+            <div class="icon"><a href="newpost"><i class="fas fa-plus"></i></a></div>
+            <div class="icon"><a href="profile"><i class="fas fa-user"></i></a></div>
+            <a href="signout"><button class="signout-btn">Sign Out</button></a>
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
+    {% for post in posts %}
+    <div class="main-content">
+        <div class="post">
+            <div class="post-header">
+                <div class="post-author">{{post.author}}</div>
+                <div class="post-date">{{post.date|date:"F d, Y"}}</div>
+            </div>
+            <div class="post-title">{{post.title}}</div>
+            <div class="post-content">{{post.content}}</div>
+            <!-- Like and Dislike Section -->
+        </div>
+    </div>
+    {% endfor %}
+</body>
+</html>
